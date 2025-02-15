@@ -1,24 +1,26 @@
-import React, { useState } from "react";
-import ".//styles/head.css"; // Import the CSS file
+import React from 'react';
+import './head.css';
+import 'font-awesome/css/font-awesome.min.css';
 
-export default function SearchBar() {
-  const [query, setQuery] = useState("");
-
+const SearchBar = () => {
   return (
-    <div className="search">
-      <div className="center">
-        <form onSubmit={(e) => e.preventDefault()}>
-          <input
-            type="text"
-            placeholder="Search Signs"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-          />
-          <button>
-            <i className="fa fa-search"></i>
-          </button>
-        </form>
+    <div style={{ backgroundColor: 'rgb(148, 148, 145)', minHeight: '100vh', width: 'auto', margin: 'auto'}}>
+      <div className="search">
+        <div className="center">
+          <form action="#">
+            <input type="text" placeholder="Search Signs" name="search" />
+            <button className="search-button">
+              <i className="fa fa-search"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div className="eng-to-asl-button">
+        <button>Test</button>
       </div>
     </div>
   );
-}
+};
+
+export default SearchBar;

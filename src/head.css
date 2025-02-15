@@ -14,9 +14,24 @@ body {
     align-items: center;
 }
 
-.button{
-    position: relative;
+.eng-to-asl-button {
+    position: absolute;
     top: 30%;
+    left: 55%;
+}
+
+.eng-to-asl-button button {
+    height: 5vh; /* Adjust the height as needed */
+    width: 15vw; /* Adjust the width as needed */
+    font-size: 1.5vw; /* Adjust the font size as needed */
+}
+
+.asl-to-eng-button {
+    position: absolute;
+    height: 5vh; /* Adjust the height as needed */
+    width: 15vw; /* Adjust the width as needed */
+    top: 30%;
+    left: 60%;
 }
 
 .search {
@@ -26,7 +41,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
 }
 
 .center form {
@@ -58,6 +72,12 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.center button:hover {
+    background-color: hsl(189, 39%, 39%);
+}
+
+
 
 .center button i {
     font-size: 2.5vw;
