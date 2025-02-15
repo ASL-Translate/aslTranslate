@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/head.css"; // Import the CSS file
+import ".//styles/head.css"; // Import the CSS file
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");

@@ -2,34 +2,63 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(148, 148, 145);
 }
 
 .center {
-    position: absolute;
-    top: 50%;
-    width: 100%;
+    position: relative;
+    top: 30%;
+    left: 20%;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    position: relative;
+    top: 30%;
 }
 
 .search {
+    position: absolute;
+    left: 20%;
+    top: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    gap: 1rem;
 }
 
-input {
-    padding: 10px;
-    width: 300px;
+.center form {
+    display: flex; /* Aligns input and button side by side */
+    align-items: center; /* Ensures vertical alignment */
+    width: 100%;
+    justify-content: center;
+}
+
+.center input[type="text"] {
+    height: 8vh;
+    width: 100%;
+    padding: 1.5% 2%;
+    font-size: 2vw;
+    box-sizing: border-box; /* Prevents padding from affecting width/height */
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px; /* Rounded corners on the left side */
 }
 
-button {
-    padding: 10px;
-    background-color: #333;
+.center button {
+    height: 8vh;
+    padding: 0 3%;
+    font-size: 2vw;
+    border: 1px solid hsl(189, 39%, 49%);
+    background-color: hsl(189, 39%, 49%);
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 0 5px 5px 0; /* Rounded corners on the right side */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center button i {
+    font-size: 2.5vw;
 }

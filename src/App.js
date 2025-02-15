@@ -1,12 +1,10 @@
 import React from "react";
-import SearchDictionary from "./SearchDictionary";
+import SearchBar from "./SearchBar";
 
-function App() {
+export default function App() {
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <SearchDictionary />
+    <div>
+      <SearchBar />
     </div>
   );
 }
-
-export default App;
