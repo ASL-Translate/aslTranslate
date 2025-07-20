@@ -1,9 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // needed to interact with the React App BrowserRouter
 
+async function VerifyAdminSession() {
+    try {
+      const response = await fetch("/apiadmin/verify", {
+        method: "GET",
+        credentials: 'include'
+      });
+  
+      const data = await response.json();
+      return (data.authenticated === true);
+    } catch (error) {
+      console.error("Error sending request:", error);
+    }
+  }
+
 function Navbar() {
   return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light" data-bs-theme="light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <div className="container-fluid">
               <Link className="navbar-brand" to="/">ASL Translate</Link>
               <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -15,9 +29,6 @@ function Navbar() {
                       <li className="nav-item">
                           <Link className="nav-link" to="/">Home</Link>
                       </li>
-                      <li className="nav-item">
-                          <Link className="nav-link" to="/translate">Translate</Link>
-                      </li>
                   </ul>
               </div>
           </div>
@@ -25,3 +36,4 @@ function Navbar() {
   );
 }
 export default Navbar;
+export { VerifyAdminSession };

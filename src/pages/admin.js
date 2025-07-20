@@ -7,10 +7,40 @@ export function Admin() {
 
     const HandleLogin = async (event) => {
         event.preventDefault();
-        alert({
-            "username": username,
-            "password": password
-        })
+        try {
+          const response = await fetch("/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+              username: username,
+              password: password
+            }),
+            credentials: 'include'
+          });
+    
+          let msgArea = document.getElementById('msg_popup');
+          if (response.status === 200) {
+            if (msgArea) {
+              msgArea.innerHTML = "<p style='color: green;'>Login Successful!</p>";
+              
+              setTimeout(() => {
+                window.location.href = "/admin/panel";
+              }, 200);
+            }
+          } else {
+            if (msgArea) {
+              msgArea.innerHTML = "<p style='color: red;'>Login Failed!</p>";
+            }
+          }
+        } catch (error) {
+          console.error("Error sending request:", error);
+          let msgArea = document.getElementById('msg_popup');
+          if (msgArea) {
+            msgArea.innerHTML = "<p style='color: red;'>Login Failed!</p>";
+          }
+        }
     }
 
     return (
