@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom'; // needed to interact with the React Ap
 
 async function VerifyAdminSession() {
     try {
-      const response = await fetch("/apiadmin/verify", {
+      const response = await fetch("http://localhost:4000/admin/verify", {
         method: "GET",
         credentials: 'include'
       });
-  
+
       const data = await response.json();
-      return (data.authenticated === true);
+      return (data && data.authenticated === true);
     } catch (error) {
       console.error("Error sending request:", error);
+      return false;
     }
   }
 
