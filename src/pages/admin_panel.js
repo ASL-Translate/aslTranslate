@@ -14,7 +14,7 @@ export function AdminPanel() {
   const [admins, setAdmins] = useState([]);
   async function getAdmins() {
     try {
-      const response = await fetch("http://localhost:4000/admin/fetch_admins", {
+      const response = await fetch("/api/admin/fetch_admins", {
         method: "GET",
         credentials: 'include'
       });
@@ -32,7 +32,7 @@ export function AdminPanel() {
 
   async function getCards() {
     try {
-      const response = await fetch("http://localhost:4000/asl/get_cards", {
+      const response = await fetch("/api/asl/get_cards", {
         method: "GET",
         credentials: 'include'
       });
@@ -53,7 +53,7 @@ export function AdminPanel() {
     let msgArea = document.getElementById('msg_popup');
 
     try {
-      const response = await fetch("http://localhost:4000/admin/register", {
+      const response = await fetch("/api/admin/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,7 +92,7 @@ export function AdminPanel() {
     let msgArea = document.getElementById('msg_popup');
 
     try {
-      const response = await fetch("http://localhost:4000/admin/reset_password", {
+      const response = await fetch("/api/admin/reset_password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export function AdminPanel() {
     let msgArea = document.getElementById('msg_popup');
 
     try {
-      const response = await fetch("http://localhost:4000/admin/remove_admin", {
+      const response = await fetch("/api/admin/remove_admin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -289,7 +289,7 @@ export function AdminPanel() {
     formData.append('face_expression', faceExpress.map(f => f.value).join(','));
 
     try {
-      const response = await fetch("http://localhost:4000/admin/asl/create_card", {
+      const response = await fetch("/api/admin/asl/create_card", {
         method: "POST",
         body: formData,
         credentials: 'include',
@@ -310,7 +310,7 @@ export function AdminPanel() {
 
   const DeleteAslCard = async (word) => {
     try {
-      const response = await fetch("http://localhost:4000/admin/asl/delete_card", {
+      const response = await fetch("/api/admin/asl/delete_card", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

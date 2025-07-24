@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'; // needed to interact with the React Ap
 
 async function VerifyAdminSession() {
   try {
-    const response = await fetch("http://localhost:4000/admin/verify", {
+    const response = await fetch("/api/admin/verify", {
       method: "GET",
       credentials: 'include'
     });
@@ -18,7 +18,7 @@ async function VerifyAdminSession() {
 
 async function handleLogout() {
   try {
-    const response = await fetch("http://localhost:4000/logout", {
+    const response = await fetch("/api/logout", {
       method: "GET",
       credentials: 'include'
     });

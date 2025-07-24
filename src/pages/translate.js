@@ -115,7 +115,7 @@ export function Translate() {
 
   async function getCards() {
     try {
-      const response = await fetch("http://localhost:4000/asl/get_cards", {
+      const response = await fetch("/api/asl/get_cards", {
         method: "GET",
         credentials: 'include'
       });

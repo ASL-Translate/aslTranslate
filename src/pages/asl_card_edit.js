@@ -118,7 +118,7 @@ export function AslCardEdit() {
     formData.append('face_expression', faceExpress.map(f => f.value).join(','));
 
     try {
-      const response = await fetch("http://localhost:4000/admin/asl/edit_card", {
+      const response = await fetch("/api/admin/asl/edit_card", {
         method: "POST",
         body: formData,
         credentials: 'include',
@@ -163,7 +163,7 @@ export function AslCardEdit() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
 
-        const response = await fetch("http://localhost:4000/asl/get_card", {
+        const response = await fetch("/api/asl/get_card", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

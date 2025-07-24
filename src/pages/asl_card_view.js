@@ -23,7 +23,7 @@ export function AslCardView() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
 
-        const response = await fetch("http://localhost:4000/asl/get_card", {
+        const response = await fetch("/api/asl/get_card", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export function AslCardView() {
                     {/* GIF Preview */}
                     <div className="text-center mb-4">
                       <img
-                        src={`http://localhost:4000/uploads/${gifFile}`}
+                        src={`/api/uploads/${gifFile}`}
                         alt={`${word} gif`}
                         style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '0.5rem' }}
                       />

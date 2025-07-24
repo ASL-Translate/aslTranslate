@@ -23,10 +23,6 @@ console.log(`[*] db_user test : ${process.env.DB_USER} | if this shows "null" or
 
 //##############################################################
 //      ASL DB INTERACTION
-async function SearchWord(query, params) {
-    const [rows] = await aslDB.query(query, params);
-    return rows;
-}
 
 async function GetAslCards() {
     const [rows] = await aslDB.query(
