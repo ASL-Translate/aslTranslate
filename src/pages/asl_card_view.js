@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar.js';
 import '../App.css';
 
+const BACKEND = process.env.REACT_APP_BACKEND_TARGET;
+
 export function AslCardView() {
   const [theme, setTheme] = useState("dark"); // Theme state
 
@@ -23,7 +25,7 @@ export function AslCardView() {
         const params = new URLSearchParams(window.location.search);
         const id = params.get('id');
 
-        const response = await fetch("/api/asl/get_card", {
+        const response = await fetch(`${BACKEND}/asl/get_card`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -83,7 +85,7 @@ export function AslCardView() {
                     {/* GIF Preview */}
                     <div className="text-center mb-4">
                       <img
-                        src={`/api/uploads/${gifFile}`}
+                        src={`${BACKEND}/uploads/${gifFile}`}
                         alt={`${word} gif`}
                         style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '0.5rem' }}
                       />

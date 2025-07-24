@@ -22,3 +22,4 @@ yarn-error.log*
 *.sh
 *.ps1
 *.gif
+.vscode

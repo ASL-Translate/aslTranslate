@@ -3,6 +3,8 @@ import Select from 'react-select';
 import Navbar from '../components/navbar.js';
 import '../App.css';
 
+const BACKEND = process.env.REACT_APP_BACKEND_TARGET;
+
 export function Translate() {
   const [translateMode, setTranslateMode] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
@@ -115,7 +117,7 @@ export function Translate() {
 
   async function getCards() {
     try {
-      const response = await fetch("/api/asl/get_cards", {
+      const response = await fetch(`${BACKEND}/asl/get_cards`, {
         method: "GET",
         credentials: 'include'
       });

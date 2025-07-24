@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../App.css';
 
+const BACKEND = process.env.REACT_APP_BACKEND_TARGET;
+
 export function Admin() {
     const [username, SetUsername] = useState("");
     const [password, SetPassword] = useState("");
@@ -8,7 +10,7 @@ export function Admin() {
     const HandleLogin = async (event) => {
         event.preventDefault();
         try {
-          const response = await fetch("/api/login", {
+          const response = await fetch(`${BACKEND}/login`, {
             method: "POST",
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",

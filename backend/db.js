@@ -318,6 +318,6 @@ async function RemoveAdmin(adminUsername) {
     }
 }
 
-export { SearchWord, LoginUser, GetAdmins, RegisterAdmin, RemoveAdmin, ResetAdminPassword,
+export { LoginUser, GetAdmins, RegisterAdmin, RemoveAdmin, ResetAdminPassword,
         CreateAslCard, ModifyAslCard, DeleteAslCard, GetAslCards,
         GetCardPath, GetCardInfo };

@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // needed to interact with the React App BrowserRouter
 
+const BACKEND = process.env.REACT_APP_BACKEND_TARGET;
+
 async function VerifyAdminSession() {
   try {
-    const response = await fetch("/api/admin/verify", {
+    const response = await fetch(`${BACKEND}/admin/verify`, {
       method: "GET",
       credentials: 'include'
     });
@@ -18,7 +20,7 @@ async function VerifyAdminSession() {
 
 async function handleLogout() {
   try {
-    const response = await fetch("/api/logout", {
+    const response = await fetch(`${BACKEND}/logout`, {
       method: "GET",
       credentials: 'include'
     });

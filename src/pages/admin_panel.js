@@ -3,6 +3,8 @@ import Select from 'react-select';
 import AdminNavbar, { VerifyAdminSession } from '../components/admin_navbar.js';
 import '../App.css';
 
+const BACKEND = process.env.REACT_APP_BACKEND_TARGET;
+
 export function AdminPanel() {
   const [msgContent, setMsgContent] = useState("");
   const [theme, setTheme] = useState("dark"); // Theme state
@@ -14,7 +16,7 @@ export function AdminPanel() {
   const [admins, setAdmins] = useState([]);
   async function getAdmins() {
     try {
-      const response = await fetch("/api/admin/fetch_admins", {
+      const response = await fetch(`${BACKEND}/admin/fetch_admins`, {
         method: "GET",
         credentials: 'include'
       });
@@ -32,7 +34,7 @@ export function AdminPanel() {
 
   async function getCards() {
     try {
-      const response = await fetch("/api/asl/get_cards", {
+      const response = await fetch(`${BACKEND}/asl/get_cards`, {
         method: "GET",
         credentials: 'include'
       });
@@ -53,7 +55,7 @@ export function AdminPanel() {
     let msgArea = document.getElementById('msg_popup');
 
     try {
-      const response = await fetch("/api/admin/register", {
+      const response = await fetch(`${BACKEND}/admin/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,7 +94,7 @@ export function AdminPanel() {
     let msgArea = document.getElementById('msg_popup');
 
     try {
-      const response = await fetch("/api/admin/reset_password", {
+      const response = await fetch(`${BACKEND}/admin/reset_password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -139,7 +141,7 @@ export function AdminPanel() {
     let msgArea = document.getElementById('msg_popup');
 
     try {
-      const response = await fetch("/api/admin/remove_admin", {
+      const response = await fetch(`${BACKEND}/admin/remove_admin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -289,7 +291,7 @@ export function AdminPanel() {
     formData.append('face_expression', faceExpress.map(f => f.value).join(','));
 
     try {
-      const response = await fetch("/api/admin/asl/create_card", {
+      const response = await fetch(`${BACKEND}/admin/asl/create_card`, {
         method: "POST",
         body: formData,
         credentials: 'include',
@@ -310,7 +312,7 @@ export function AdminPanel() {
 
   const DeleteAslCard = async (word) => {
     try {
-      const response = await fetch("/api/admin/asl/delete_card", {
+      const response = await fetch(`${BACKEND}/admin/asl/delete_card`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

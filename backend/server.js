@@ -8,7 +8,7 @@ import cors from 'cors';
 import path from 'path';
 
 import { Hash_SHA256, GenerateAdminJWT } from './utils.js';
-import { SearchWord, LoginUser, GetAdmins, RegisterAdmin, RemoveAdmin, ResetAdminPassword,
+import { LoginUser, GetAdmins, RegisterAdmin, RemoveAdmin, ResetAdminPassword,
         CreateAslCard, ModifyAslCard, DeleteAslCard, GetAslCards,
         GetCardPath, GetCardInfo } from './db.js';
 
@@ -64,23 +64,6 @@ app.get('/', (req, res) => {
 //      ASL DB INTERACTION
 
 //----- PUBLIC END_POINTS
-app.get('/search', async (req, res) => {
-    const { word } = req.query; // /seach?word=hello
-    let query = '';
-    const params = [];
-    if (word) {
-        query += ' AND word LIKE ?';
-        params.push(`%${word}%`);
-    }
-    try {
-        const rows = await SearchWord(query, params);
-        return res.json(rows);
-    } catch (error) {
-        console.error('Error retrieving database entries:', error);
-        return res.status(500).send('Error retrieving database entries');
-    }
-});
-
 app.get('/asl/get_cards', async (req, res) => {
     try {
         const card_list = await GetAslCards();
