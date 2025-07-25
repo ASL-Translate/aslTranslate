@@ -10,6 +10,12 @@ function Hash_SHA256(input) {
     return crypto.createHash('sha256').update(input).digest('hex');
 }
 
+function FmtCardWord(str) {
+    if (!str) return ''; // handle empty strings
+    str = str.toLowerCase();
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 async function GenerateAdminJWT(username) {
     if (username === null) {
         return null;
@@ -32,4 +38,4 @@ async function GenerateAdminJWT(username) {
     return token;
 }
 
-export { Hash_SHA256, GenerateAdminJWT };
+export { Hash_SHA256, GenerateAdminJWT, FmtCardWord };

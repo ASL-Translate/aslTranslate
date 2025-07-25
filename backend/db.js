@@ -1,6 +1,6 @@
 import mysql from 'mysql2';
 import path from 'path';
-import { Hash_SHA256 } from './utils.js';
+import { Hash_SHA256, FmtCardWord } from './utils.js';
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -43,6 +43,22 @@ async function CreateAslCard(data) {
                 path
             }
     */
+
+    // check if given data is valid / present
+    if (!data) {
+        console.log("Invalid Card Data!")
+        return false;
+    }
+
+    // take the word given and format it:
+    // |___ example -> Example | EXAMPLE -> Example
+    if (data.word) {
+        data.word = FmtCardWord(data.word)
+    } else {
+        console.log("Attempting to Create card with no Word!")
+        return false;
+    }
+
     const insertCardQuery = `
     INSERT INTO asl_words (
         word, path, hand_shape, location, palm_dir, hand_movement, face_expression
@@ -67,6 +83,8 @@ async function CreateAslCard(data) {
             [data.word]
         );
 
+        // if there is a card using the given data.word we drop this
+        // create request
         if (existing.length > 0) {
             console.log(`Card already exists for: ${data.word}`)
             return false;
@@ -91,6 +109,8 @@ async function DeleteAslCard(word) {
         return false;
     }
 
+    word = FmtCardWord(word);
+
     try {
         const deleteQuery = 'DELETE FROM asl_words WHERE word = ?';
         const [result] = await aslDB.query(deleteQuery, [word]);
@@ -103,6 +123,13 @@ async function DeleteAslCard(word) {
 }
 
 async function GetCardPath(word) {
+    if (!word) {
+        console.log("No word data given!")
+        return false;
+    }
+    
+    word = FmtCardWord(word);
+
     try {
         const findQuery = 'SELECT path FROM asl_words WHERE word = ?';
         const [result] = await aslDB.query(findQuery, [word]);
@@ -141,6 +168,18 @@ async function GetCardInfo(id) {
 // given data we find the entry based off data.word
 // and modify its attributes based off data
 async function ModifyAslCard(data) {
+    if (!data) {
+        console.log("Invalid Modified Card Data!")
+        return false;
+    }
+
+    if (data.word) {
+        data.word = FmtCardWord(data.word)
+    } else {
+        console.log("Attempting to Create card with no Word!")
+        return false;
+    }
+
     const updateQuery = `
         UPDATE asl_words
         SET 
