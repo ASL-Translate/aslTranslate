@@ -1,5 +1,40 @@
+# ASL Translate
 This project allows the translation of English into an ASL sign by giving the 
 user a GIF file showing the live signing of an ASL term. It also allows a user 
 to use filters to search for ASL signs that can be translated back to English 
-using the five parameters of handshape, location, movement, orientation, and 
-facial expression :)
+using the five parameters:
+- handshape
+- location
+- movement
+- orientation
+- facial expression :)
+
+## :hammer: Install Dependencies
+```bash
+# if you do not have NodeJS installed
+sudo apt update && sudo apt install nodejs npm
+```
+
+## :wrench: Build
+```bash
+# installs dependencies/packages tracked by this project
+npm install .
+# compile and run the frontend locally
+npm start
+```
+
+Move the `.env` file into the project root directory, then run the following to run the backend locally.
+```bash
+# if you want to use the latest node binary replace nodejs -> node
+nodejs ./backend/server.js
+```
+
+## :chart_with_upwards_trend: Production
+You will need to install a dependency to use `serve`, this is recommended after running `npm run build`.
+```bash
+sudo npm install -g serve
+```
+Prepare production build and serve as a static server.
+```bash
+npm run build && server -s build
+```
