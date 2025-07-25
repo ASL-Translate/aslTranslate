@@ -6,6 +6,8 @@ import '../App.css';
 const BACKEND = process.env.REACT_APP_BACKEND_TARGET;
 
 export function Translate() {
+  // page state variables used to handle changes to the site when modified
+  // also used for storing user input for forms/searches/etc
   const [translateMode, setTranslateMode] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
   const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
@@ -100,21 +102,26 @@ export function Translate() {
   const [handMovem, setHandMovem] = useState([]);
   const [faceExpress, setFaceExpress] = useState([]);
 
+  // when theme changes the site will update the theme
+  // based on bootstrap light/dark mode theme
   useEffect(() => {
     // Apply theme class to body
     document.body.setAttribute('data-bs-theme', theme);
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  // button click target
   const toggleTheme = () => {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
-
+  
+  // button click target
   const toggleSearchMode = () => {
     setTranslateMode(prev => (prev === 0 ? 1 : 0));
     setSearchTerm('');
   };
 
+  // perform a call to the backend and receive data from it
   async function getCards() {
     try {
       const response = await fetch(`${BACKEND}/asl/get_cards`, {
@@ -130,10 +137,12 @@ export function Translate() {
     }
   }
 
+  // on-load execute the body
   useEffect(() => {
     getCards();
   }, []);
 
+  // special variable that performs logic on itself to defined its value
   const filteredCards = useMemo(() => {
     if (translateMode === 0) {
       if (searchTerm === "" || !searchTerm.trim()) {
@@ -245,6 +254,10 @@ export function Translate() {
       {/* ASL content */}
       <div className="m-3">
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+          {/*
+              Within returns if we need to execute JS for rendering HTML
+              JS logic goes within the {}
+          */}
           {filteredCards.map((card, index) => (
             <div className="col" key={card.id || index}>
               <div className={`card shadow-sm border-4 ${theme === 'dark' ? 'text-light' : ''}`}>

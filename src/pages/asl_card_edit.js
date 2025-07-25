@@ -107,9 +107,11 @@ export function AslCardEdit() {
   const UpdateAslCard = async (event) => {
     event.preventDefault();
 
+    // collects the parameters from the URL and extracts id
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
 
+    // creates form data used to pass to the backend
     const formData = new FormData();
     formData.append('word', word);
     formData.append('file', gifFile);

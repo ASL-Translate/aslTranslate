@@ -369,6 +369,7 @@ export function AdminPanel() {
 
           <h1 className="text-center mb-4">Admin Panel</h1>
 
+          {/* if msgContent has a value, render the HTML within the () block */}
           {msgContent !== "" && (
             <div
               id="msg_popup"
@@ -528,7 +529,7 @@ export function AdminPanel() {
             )}
 
             {activeTab === "admins" && (
-              <>
+              <> {/* <></> is used for returning large HTML blocks within () blocks for conditional rendering */}
                 <div className="row justify-content-center">
                   <div className="col-md-6">
                     <div
