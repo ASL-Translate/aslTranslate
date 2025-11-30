@@ -31,7 +31,7 @@ jobs:
           echo "Importing env from secrets. . ."
           echo "${{ secrets.ENV }}" > /tmp/.env
           echo "Exporting env to remote server. . ."
-          scp /tmp/.env $TARGET:~/.env
+          scp -o StrictHostKeyChecking=no /tmp/.env "$TARGET:~/.env"
       - name: Update Server-Side
         run: |
           echo "ssh $TARGET ~/production.sh"
