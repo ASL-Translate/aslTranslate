@@ -26,7 +26,13 @@ jobs:
           key: ${{ secrets.ID_ED25519 }}
           name: id_ed25519
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: Import ENV file
+        run: |
+          echo "Importing env from secrets. . ."
+          echo "${{ secrets.ENV }}" > /tmp/.env
+          echo "Exporting env to remote server. . ."
+          scp /tmp/.env $TARGET:~/.env
       - name: Update Server-Side
         run: |
-          echo "ssh $TARGET id"
-          ssh $TARGET id
+          echo "ssh $TARGET ~/production.sh"
+          ssh $TARGET ~/production.sh
