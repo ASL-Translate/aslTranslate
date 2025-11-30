@@ -29,7 +29,9 @@ jobs:
       - name: Import ENV file
         run: |
           echo "Importing env from secrets. . ."
-          echo "${{ secrets.ENV }}" > /tmp/.env
+          cat << 'EOF' > /tmp/.env
+          ${{ secrets.ENV }}
+          EOF
           echo "Exporting env to remote server. . ."
           scp -o StrictHostKeyChecking=no /tmp/.env "$TARGET:~/.env"
       - name: Update Server-Side
