@@ -2,6 +2,9 @@ name: Launch Main
 
 on: 
   workflow_dispatch:
+  push: # this workflow will execute when main gets a new commit
+    branches:
+      - 'main'
 
 env:
   # preferrably change IP to domain name
