@@ -1,0 +1,29 @@
+name: Launch Main
+
+on: 
+  workflow_dispatch:
+
+env:
+  # preferrably change IP to domain name
+  HOST: 50.43.175.26
+  USER: developer
+  TARGET: $USER@$HOST
+  RUN: ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $TARGET
+  COPY: scp -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+  
+jobs:
+  example_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get our files
+        uses: actions/checkout@v2
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.ID_ED25519 }}
+          name: id_ed25519
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: Update Server-Side
+        run: |
+          echo "ssh $TARGET id"
+          ssh $TARGET id
