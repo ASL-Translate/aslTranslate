@@ -36,5 +36,5 @@ jobs:
           scp -o StrictHostKeyChecking=no /tmp/.env "$TARGET:~/.env"
       - name: Update Server-Side
         run: |
-          echo "ssh $TARGET ~/production.sh"
-          ssh $TARGET ~/production.sh
+          echo "ssh $TARGET /home/developer/production.sh"
+          ssh $TARGET /home/developer/production.sh
