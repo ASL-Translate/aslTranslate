@@ -7,15 +7,15 @@ env:
   # preferrably change IP to domain name
   HOST: 50.43.175.26
   USER: developer
-  TARGET: $USER@$HOST
+  TARGET: developer@50.43.175.26
   RUN: ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $TARGET
   COPY: scp -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
   
 jobs:
-  example_workflow:
+  main_workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Get our files
+      - name: Fetch Files
         uses: actions/checkout@v2
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
